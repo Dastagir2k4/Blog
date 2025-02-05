@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Heart, Trash2 } from 'lucide-react';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const Blog = () => {
     const initialBlogs = [
         {
@@ -57,7 +58,6 @@ const Blog = () => {
         });
         setUserBlog(updatedBlogs);
         if (updatedBlogs.find((blog) => blog.id === id).isFavorite) {
-
             toast.success("Blog is added to favourite", {
                 position: "top-right",
                 autoClose: 3000,
@@ -66,10 +66,10 @@ const Blog = () => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-              });        }
+            });
+        }
         localStorage.setItem('blogs', JSON.stringify(updatedBlogs));
         console.log("successfully sent mail from client");
-      
     };
 
     const navigate = useNavigate();
@@ -79,6 +79,10 @@ const Blog = () => {
 
     const navToBlogDetail = (id) => {
         navigate(`/blog/${id}`);
+    };
+
+    const isInitialBlog = (id) => {
+        return initialBlogs.some(blog => blog.id === id);
     };
 
     return (
@@ -104,7 +108,9 @@ const Blog = () => {
                                 </div>
                             </div>
                             <p className='mt-2 text-gray-600'>{blog.content.substring(0, 100)}...</p>
-                            <button className='mt-4 px-3 py-2 rounded-lg bg-blue-500 text-white cursor-pointer' onClick={() => navToBlogDetail(blog.id)}>Read More</button>
+                            {!isInitialBlog(blog.id) && (
+                                <button className='mt-4 px-3 py-2 rounded-lg bg-blue-500 text-white cursor-pointer' onClick={() => navToBlogDetail(blog.id)}>Read More</button>
+                            )}
                         </div>
                     </div>
                 ))}
