@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Heart, Trash2 } from 'lucide-react';
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Blog = () => {
     const initialBlogs = [
         {
@@ -55,7 +56,20 @@ const Blog = () => {
             return blog;
         });
         setUserBlog(updatedBlogs);
+        if (updatedBlogs.find((blog) => blog.id === id).isFavorite) {
+
+            toast.success("Blog is added to favourite", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });        }
         localStorage.setItem('blogs', JSON.stringify(updatedBlogs));
+        console.log("successfully sent mail from client");
+      
     };
 
     const navigate = useNavigate();
@@ -95,6 +109,7 @@ const Blog = () => {
                     </div>
                 ))}
             </div>
+            <ToastContainer />
         </div>
     );
 };
