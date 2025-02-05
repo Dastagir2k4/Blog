@@ -20,7 +20,7 @@ const BlogFavourite = () => {
     return (
         <div>
             <Header/>
-            <h1 className='text-5xl text-center text-blue-500'>Favouritee Blogs</h1>
+            <h1 className='text-5xl text-center text-blue-500'>Favourite Blogs</h1>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-4 px-10 py-20'>
                 {favoriteBlogs.map((blog) => (
                     <div key={blog.id} className='bg-white shadow-md rounded-lg overflow-hidden'>
