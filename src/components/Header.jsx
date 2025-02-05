@@ -1,9 +1,8 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Header = () => {
-  const navigate = useNavigate();
-
+ 
   return (
     <div>
       <div className='bg-blue-800 text-white p-4 flex '>
@@ -12,12 +11,12 @@ const Header = () => {
           </a></h1>
         <ul className='flex ml-auto gap-10'>
           <li className='cursor-pointer'>
-            <a href='/'>Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li className='cursor-pointer'>
-            <a href='/favourites'>
+            <Link to='/favourites'>
             favourites
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
